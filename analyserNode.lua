@@ -6,10 +6,10 @@ function getSmoothWave(x)
     return math.sin(tick())*(x*2*math.pi)*255
 end
 
-function analyserNode.CreateAnalyser(s, src)
-    if (newSize < 2^5 or newSize > 2^15) then
-            error("DOM Exception: Index Size Error")
-            return
+function analyserNode.CreateAnalyser(s, source)
+    if (s < 2^5 or s > 2^15) then
+        error("DOM Exception: Index Size Error")
+        return
     else
         local object = {
             frequencyBinCount=s/2;
@@ -33,12 +33,14 @@ function analyserNode.CreateAnalyser(s, src)
             for i=1,fbc do
                 array[i] = complex.new(getSmoothWave((pl*i/fbc)), 0)--complex.new(math.random(), 0)
             end
-            local function devide(list, factor)
+            local function divide(list, factor)
                 local newList = {}
                 for i,v in ipairs(list) do newList[i] = list[i] / factor end
                 return newList
             end
-            local newArray = divide(array, fbc)
+            local newArray = fft(array, inverseBool)
+            
+            local newArray1 = divide(newArray, fbc)
             return newArray
         end
         return object
