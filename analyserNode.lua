@@ -2,8 +2,8 @@ local analyserNode = {}
 local fft = require "fft"
 local complex = require "complexArray"
 
-function getSmoothWave(x, fbc)
-    return math.sin(tick())*(x*i/fbc*2*math.pi)*255
+function getSmoothWave(x)
+    return math.sin(tick())*(x*2*math.pi)*255
 end
 
 function analyserNode.CreateAnalyser(s, src)
@@ -25,9 +25,13 @@ function analyserNode.CreateAnalyser(s, src)
         end
         function object:GetByteFrequencyData(inverseBool, src) --if not already specified this line allows an src to be changed--
             local arrray = {}
+            if (src~=nil and source == nil) then
+                source = src
+            end
             local fbc = object.frequencyBinCount
+            local pl = source.PlaybackLoudness
             for i=1,fbc do
-                array[i] = complex.new(math.sin(2* i/fbc * 2*math.pi) + math.sin(10* i/fbc * 2*math.pi), 0)--complex.new(math.random(), 0)
+                array[i] = complex.new(getSmoothWave((pl*i/fbc)), 0)--complex.new(math.random(), 0)
             end
             local function devide(list, factor)
                 local newList = {}
