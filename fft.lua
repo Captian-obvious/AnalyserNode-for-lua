@@ -1,4 +1,4 @@
-_G.complex = require "complexArray"
+local complex = require "complexArray"
 
 ---------------------------------------------------------------
 --This is a lua port of the KissFFT Library by Mark Borgerding
