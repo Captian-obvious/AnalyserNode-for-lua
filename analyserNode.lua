@@ -1,6 +1,4 @@
 local analyserNode = {}
-local fft = require "fft"
-local complex = require "complexArray"
 
 function getSmoothWave(x)
     return math.sin(tick())*(x*2*math.pi)*255
