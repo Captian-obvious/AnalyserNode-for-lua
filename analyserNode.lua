@@ -6,9 +6,14 @@ end
 
 --PV stands for Perfered Value
 
-function quadIn(...)
-    
-end
+function quadIn(t,b,c,d) 
+    t=t/d; 
+    return c*t*t+b; 
+end;
+function quadOut(t,b,c,d) 
+    t=t/d; 
+    return -c*t*(t-2)+b; 
+end;
 
 function inverse(n)
     return (1/n)
