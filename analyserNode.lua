@@ -6,10 +6,6 @@ end
 
 --PV stands for Perfered Value
 
-function getPV(value, frequencyBinCount)
-    
-end
-
 function quadIn(...)
     
 end
@@ -40,13 +36,18 @@ function analyserNode.CreateAnalyser(s, source)
             if (src~=nil and source == nil) then
                 source = src
             end
+            local i = 0
             local p = source.PlaybackLoudness
             array[1] = p * 255
             array[2] = p * 245
-            local v = p * object.frequencyBinCount
-            local nv = getPV(p, object.frequencyBinCount)
-            while i<#object.frequencyBinCount - 2 do
+            i = 3
+            local v = inverse(math,floor(p * object.frequencyBinCount))
+            local pv = p * 255
+            while i<#object.frequencyBinCount do
                 runServ.Stepped:Wait()
+                if v > 2 then
+                    array[v] = pv
+                end
             end
         end
         return object
