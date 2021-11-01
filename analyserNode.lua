@@ -10,6 +10,10 @@ function getPV(value, frequencyBinCount)
     
 end
 
+function quadIn(...)
+    
+end
+
 function analyserNode.CreateAnalyser(s, source)
     if (s < 2^5 or s > 2^15) then
         error("DOM Exception: Index Size Error")
