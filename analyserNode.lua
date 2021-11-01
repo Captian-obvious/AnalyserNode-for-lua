@@ -14,6 +14,10 @@ function quadIn(...)
     
 end
 
+function inverse(n)
+    return (1/n)
+end
+
 function analyserNode.CreateAnalyser(s, source)
     if (s < 2^5 or s > 2^15) then
         error("DOM Exception: Index Size Error")
