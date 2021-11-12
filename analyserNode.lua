@@ -51,7 +51,7 @@ function analyserNode.CreateAnalyser(s, source)
             while i<#object.frequencyBinCount do
                 runServ.Stepped:Wait()
                 if v > 2 then
-                    array[v] = pv
+                    array[object.frequencyBinCount*v] = pv
                 end
             end
         end
