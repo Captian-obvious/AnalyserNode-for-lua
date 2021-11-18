@@ -40,7 +40,7 @@ function Set(array,fbc,N,S,D) -- Number, Scale, Direction
 	end
 end
 
-function analyserNode.CreateAnalyser(s, source)
+function analyserNode.CreateAnalyser(s)
 	if (s < 2^5 or s > 2^15) then
 		error("DOM Exception: Index Size Error")
 		return
@@ -59,17 +59,28 @@ function analyserNode.CreateAnalyser(s, source)
 		end
 		function object:GetByteFrequencyData(src, max) --if not already specified this line allows an src to be changed--
 			local array = {}
-			if (src~=nil and source == nil) then
-				source = src
-			end
-			local i = 0
 			local p = src.PlaybackLoudness
 			array[1] = p * 255
 			array[2] = p * 245
 			local v = inverse(math.floor(p * object.frequencyBinCount))
 			local pv = p * 255
-			if (v * object.frequencyBinCount) > 2 then
-				Set(array,object.frequencyBinCount,object.frequencyBinCount*v,pv,0)
+			local n = v*object.frequencyBinCount
+			if n > 2 then
+				array[n] = pv
+				if n>0 then
+					local nS=array[n-1]
+					local n1 = n-1
+					if pv>nS then
+						array[n1] = nS+(pv-nS)/3
+					end
+				end
+				if n<object.frequencyBinCount then
+					local nS=array[n+1]
+					local n1 = n+1
+					if pv>nS then
+						array[n1] = nS+(pv-nS)/3
+					end
+				end
 			end
 			return array
 		end
