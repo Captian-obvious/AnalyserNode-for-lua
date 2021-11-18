@@ -78,3 +78,4 @@ function analyserNode.CreateAnalyser(s, source)
 end
 
 return analyserNode
+
