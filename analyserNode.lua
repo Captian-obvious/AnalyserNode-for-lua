@@ -48,12 +48,10 @@ function analyserNode.CreateAnalyser(s, source)
             i = 3
             local v = inverse(math.floor(p * object.frequencyBinCount))
             local pv = p * 255
-            while i<#object.frequencyBinCount do
-                runServ.Stepped:Wait()
-                if v > 2 then
-                    array[object.frequencyBinCount*v] = pv
-                end
+            if v > 2 then
+                array[object.frequencyBinCount*v] = pv
             end
+            return array
         end
         return object
     end
