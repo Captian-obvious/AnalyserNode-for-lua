@@ -41,10 +41,10 @@ function analyserNode.CreateAnalyser(s)
         error("DOM Exception: Index Size Error")
         return
     else
-    local object = {
-        frequencyBinCount=s/2;
-        fftSize = s;
-    }
+        local object = {
+            frequencyBinCount=s/2;
+            fftSize = s;
+        };
         function object:SetFFTSize(newSize)
             if (newSize < 2^5 or newSize > 2^15) then
                 error("DOM Exception: Index Size Error")
