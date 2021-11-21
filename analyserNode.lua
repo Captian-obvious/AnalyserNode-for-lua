@@ -37,12 +37,12 @@ function analyserNode.CreateAnalyser(s)
             local pl = audio.PlaybackLoudness
             array[1] = pl * 255
             array[2] = pl * 245
-            local v = inverse(math.floor(pl * object.frequencyBinCount))
+            local v = math.floor(pl * object.frequencyBinCount)
             local pv = pl * 255
-            local n = v*object.frequencyBinCount
+            local n = v
             if n > 2 then
                 array[n] = pv
-                if n>0 then
+                if n>1 then
                     local nS=array[n-1]
                     local n1 = n-1
                     if pv>nS then
