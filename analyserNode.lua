@@ -1,7 +1,7 @@
 local analyserNode = {}
 
 function getSmoothWave(x)
-return math.sin(tick())*(x*2*math.pi)*255
+    return math.sin(tick())*(x*2*math.pi)*255
 end
 
 --PV stands for Perfered Value
