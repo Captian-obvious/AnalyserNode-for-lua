@@ -54,7 +54,7 @@ function analyserNode.CreateAnalyser(s)
             end
         end
     
-        function object:GetByteFrequencyData(audio, max) --if not already specified this line allows an src to be changed--
+        function object:GetByteFrequencyData(audio) --if not already specified this line allows an src to be changed--
             local array = {}
             local pl = audio.PlaybackLoudness
             array[1] = pl * 255
