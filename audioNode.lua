@@ -8,7 +8,7 @@ function audioNode.new(src)
     end
     object.Source = src
     function object.CreateAnalyser(fftSize)
-        local object = analyserNode.CreateAnalyser(fftSize)
+        local object = analyserNode.CreateAnalyser(src, fftSize)
         return object
     end
     function object.CreateGain()
