@@ -9,7 +9,7 @@ function audioNode.new(src)
     end;
     object.Source = src;
     function object.CreateAnalyser(fftSize)
-        return analyserNode.CreateAnalyser(src, fftSize);
+        return analyserNode.CreateAnalyser(object.Source, fftSize);
     end;
     function object.CreateGain()
         local object = {};
@@ -17,7 +17,9 @@ function audioNode.new(src)
             local max = 10;
             src.Volume = max * multiplier;
         end;
+        return object;
     end;
+    return object;
 end;
 
 return audioNode;
