@@ -14,10 +14,10 @@ function audioNode.new(src)
     function object.CreateGain()
         local object = {};
         function object.SetGainAtTime(multiplier);
-            local max = 10
-            src.Volume = max * multiplier
-        end
-    end
-end
+            local max = 10;
+            src.Volume = max * multiplier;
+        end;
+    end;
+end;
 
 return audioNode;
