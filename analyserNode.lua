@@ -15,7 +15,7 @@ function inverse(n)
     end
 end
 
-function analyserNode.CreateAnalyser(s)
+function analyserNode.CreateAnalyser(s,src)
     if (s < 2^5 or s > 2^15) then
         error("DOM Exception: Index Size Error")
         return
@@ -32,8 +32,11 @@ function analyserNode.CreateAnalyser(s)
                 object.fftSize = newSize
             end
         end
-        function object:GetByteFrequencyData(audio) --if not already specified this line allows an src to be changed--
+        function object:GetByteFrequencyData(audio, newSrc) --if not already specified this line allows an src to be changed--
             local array = {}
+            if newSrc then 
+                src = newSrc 
+            end
             local pl = audio.PlaybackLoudness
             array[1] = pl * 255
             array[2] = pl * 245
