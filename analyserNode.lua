@@ -62,4 +62,5 @@ function analyserNode.CreateAnalyser(s)
         return object
     end
 end
+
 return analyserNode
