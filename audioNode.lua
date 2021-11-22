@@ -1,4 +1,4 @@
-local analyserNode = require(script.Parent.AnalyserNode);
+local analyserNode = require(script.AnalyserNode);
 local audioNode = {};
 
 function audioNode.new(src)
@@ -8,8 +8,7 @@ function audioNode.new(src)
     end
     object.Source = src
     function object.CreateAnalyser(fftSize)
-        local object = analyserNode.CreateAnalyser(src, fftSize)
-        return object
+        return analyserNode.CreateAnalyser(src, fftSize)
     end
     function object.CreateGain()
         
