@@ -34,7 +34,7 @@ function analyserNode.CreateAnalyser(s,src)
         end
         function object:GetByteFrequencyData(audio) --if not already specified this line allows an src to be changed--
             local array = {}
-            if audio then 
+            if audio then
                 src = audio
             end
             local pl = audio.PlaybackLoudness
@@ -60,6 +60,11 @@ function analyserNode.CreateAnalyser(s,src)
                     end
                 end
             end
+            spawn(function()
+                for i=1,#array do
+                    print(tostring(array[i]))
+                end
+            end)
             return array
         end
         return object
