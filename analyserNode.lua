@@ -43,8 +43,6 @@ function analyserNode.CreateAnalyser(s,src)
             end
             local pl = audio.PlaybackLoudness
             mpl = math.max(pl,mpl)
-            array[object.frequencyBinCount] = pl * 255
-            array[object.frequencyBinCount-1] = pl * 245
             pl = pl/mpl
             local v = math.floor(pl * object.frequencyBinCount)
             local pv = pl * 255
