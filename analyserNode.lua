@@ -6,13 +6,16 @@ end
 
 --PV stands for Perfered Value
 
-function inverse(n)
-    if n>0 then
-        return (n^(-1))
-    else
-        warn("Cannot Divide By Zero")
-        return 0
+-- in-situ reversal
+function reverse(t)
+    local n = #t
+    local r = {};
+    local i = 1
+    for i = 1, n do
+        r[i],r[n] = t[n],t[i]
+        n = n - 1
     end
+    return r
 end
 
 function analyserNode.CreateAnalyser(s,src)
@@ -38,33 +41,16 @@ function analyserNode.CreateAnalyser(s,src)
                 src = audio
             end
             local pl = audio.PlaybackLoudness
-            array[1] = pl * 255
-            array[2] = pl * 245
+            mpl = math.max(pl,mpl)
             local v = math.floor(pl * object.frequencyBinCount)
             local pv = pl * 255
             local n = v
             if n > 2 then
-                array[n] = pv
-                if n>1 then
-                    local nS=array[n-1]
-                    local n1 = n-1
-                    if pv>nS then
-                        array[n1] = nS+(pv-nS)/3
-                    end
-                end
-                if n<object.frequencyBinCount then
-                    local nS=array[n+1]
-                    local n1 = n+1
-                    if pv>nS then
-                        array[n1] = nS+(pv-nS)/3
-                    end
-                end
+                array[v] = pv
             end
-            spawn(function()
-                for i=1,#array do
-                    print(tostring(array[i]))
-                end
-            end)
+            array = reverse(array)
+            array[1] = pl * 255
+            array[2] = pl * 245
             return array
         end
         return object
