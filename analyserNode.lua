@@ -11,9 +11,10 @@ function reverse(t)
     local n = #t
     local r = {};
     local i = 1
-    for i = 1, n do
-        r[i],r[n] = t[n],t[i]
-        n = n - 1
+    for i = 1, #t do
+        r[i] = t[n];
+        r[n] = t[i];
+        n = n - 1;
     end
     return r
 end
