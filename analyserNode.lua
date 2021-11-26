@@ -35,13 +35,15 @@ function analyserNode.CreateAnalyser(s,src)
                 object.fftSize = newSize
             end
         end
+        local mpl = 0
         function object:GetByteFrequencyData(audio) --if not already specified this line allows an src to be changed--
             local array = {}
             if audio then
                 src = audio
             end
             local pl = audio.PlaybackLoudness
-            mpl = math.max(pl,mpl)
+			mpl = math.max(pl,mpl)
+            pl = pl/mpl
             local v = math.floor(pl * object.frequencyBinCount)
             local pv = pl * 255
             local n = v
