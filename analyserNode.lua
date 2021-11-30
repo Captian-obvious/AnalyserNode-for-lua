@@ -45,6 +45,7 @@ function analyserNode.CreateAnalyser(s,src)
             local pl = audio.PlaybackLoudness
             mpl = math.max(pl,mpl)
             pl = pl/mpl
+            --[[
             local v = math.floor(pl * object.frequencyBinCount)
             local pv = pl * 255
             local n = v
@@ -52,6 +53,9 @@ function analyserNode.CreateAnalyser(s,src)
                 array[v] = pv
             end
             array = reverse(array)
+            ]]--
+            array[tick()] = pl
+            fft(array, false)
             return array
         end
         return object
