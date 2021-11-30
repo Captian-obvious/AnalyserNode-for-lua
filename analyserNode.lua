@@ -1,4 +1,5 @@
 local analyserNode = {}
+local fft = require(script.fft).fft
 
 function getSmoothWave(x)
     return math.sin(tick())*(x*2*math.pi)*255
