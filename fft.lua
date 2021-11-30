@@ -1,8 +1,4 @@
-local complex = require "complexArray"
-
----------------------------------------------------------------
---This is a lua port of the KissFFT Library by Mark Borgerding
---It provides a simple function to carry out a fast fourier transformation (FFT).
+local complex = require(script.complex)
 
 local luafft = {}
 local cos,sin = math.cos,math.sin
@@ -27,10 +23,12 @@ local function next_possible_size(n)
     while m%2 == 0 do m = m/2 end
     while m%3 == 0 do m = m/3 end
     while m%5 == 0 do m = m/5 end
-	if m <= 1 then break end
-    n = n + 1
-  end
-  return n
+		if m <= 1 then 
+			break 
+		end
+		n = n + 1
+	end
+	return n
 end
 
 ---------------------------------------------------------------
